@@ -2,6 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
+import { useTranslation } from "@/hooks/useTranslation";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -24,6 +25,7 @@ import SimpleHeroCanvas from "@/components/SimpleHeroCanvas";
 import GLBHeroCanvas from "@/components/GLBHeroCanvas";
 
 export default function Home() {
+  const { t } = useTranslation();
   const [blogPosts, setBlogPosts] = useState<any[]>([]);
   const bigImgRef = useRef<HTMLDivElement>(null);
 
@@ -70,8 +72,31 @@ export default function Home() {
   );
 
   useEffect(() => {
-    // Temporarily disable blog posts to avoid Sanity client issues
-    setBlogPosts([]);
+    // Fetch blog posts for preview
+    const fetchBlogPosts = async () => {
+      try {
+        const client = (await import("@/sanityClient")).default;
+        const posts = await client.fetch(
+          `*[_type == "post"]|order(_createdAt desc)[0...3]{
+            _id,
+            title,
+            slug,
+            description,
+            mainImage {
+              asset->{url}
+            },
+            publishedAt,
+            body
+          }`,
+        );
+        setBlogPosts(posts);
+      } catch (error) {
+        console.error("Error fetching blog posts:", error);
+        setBlogPosts([]);
+      }
+    };
+
+    fetchBlogPosts();
   }, []);
 
   return (
@@ -107,9 +132,14 @@ export default function Home() {
         {/* <h4 className="font-ITCGaramondN relative z-10 text-4xl text-white opacity-0 md:text-6xl">
           Meubles en bois sur mesure
         </h4> */}
-        <AnimatedText isHero delay={0.0} stagger={0.3}>
+        <AnimatedText
+          isHero
+          delay={0.0}
+          stagger={0.3}
+          translationKey="home.title"
+        >
           <h4 className="font-ITCGaramondN relative z-10 text-4xl text-white md:text-6xl">
-            Meubles en bois sur mesure
+            {t("home.title")}
           </h4>
         </AnimatedText>
       </section>
@@ -119,10 +149,7 @@ export default function Home() {
           <AnimatedText delay={0.0} stagger={0.3}>
             <h1 className="mb-6">Meubles en bois sur mesure</h1>
             <p className="font-HelveticaNow mx-auto max-w-2xl text-lg">
-              Vous cherchez un artisan menuisier en Belgique pour créer des
-              meubles en bois sur mesure ? Nemwood est spécialisé dans la
-              fabrication artisanale de tables, chaises, garde-robes, escaliers
-              et même de décors pour le cinéma.
+{t("home.description")}
             </p>
             <p className="font-HelveticaNow text-primary/70 mx-auto mt-4 max-w-2xl text-sm leading-tight">
               En activité depuis 2016 en Belgique.
@@ -133,13 +160,10 @@ export default function Home() {
         <section className="text-primary bg-secondary intro mx-auto px-4 py-20 text-center md:px-8 md:py-20">
           <AnimatedText delay={0.0} stagger={0.3}>
             <h1 className="font-ITCGaramondN mx-auto mb-6 max-w-4xl text-6xl">
-              Meubles en bois sur mesure
+              {t("home.title")}
             </h1>
             <p className="font-HelveticaNow mx-auto max-w-2xl text-lg">
-              Vous cherchez un artisan menuisier en Belgique pour créer des
-              meubles en bois sur mesure ? Nemwood est spécialisé dans la
-              fabrication artisanale de tables, chaises, garde-robes, escaliers
-              et même de décors pour le cinéma.
+              {t("home.description")}
             </p>
           </AnimatedText>
         </section>
@@ -170,15 +194,9 @@ export default function Home() {
               {/* <h4 className="font-HelveticaNow text-primary/70 text-sm">
                 A PROPOS
               </h4> */}
-              <h2 className="mt-8 md:max-w-xl">Notre savoir-faire</h2>
+              <h2 className="mt-8 md:max-w-xl">{t("home.expertise")}</h2>
               <p className="font-HelveticaNow mt-8 text-lg md:max-w-xl">
-                Chez Nemwood, artisan ébéniste en Belgique, chaque meuble est
-                conçu sur mesure dans notre atelier. Spécialisés dans la
-                fabrication de meubles en bois massif, nous créons des cuisines
-                sur mesure, mobilier de salon, escaliers et aménagements
-                uniques. Notre savoir-faire artisanal privilégie le bois massif
-                durable, travaillé à la main pour des créations authentiques et
-                durables, parfaitement adaptées à votre intérieur.
+                {t("home.expertise_description")}
               </p>
             </AnimatedText>
 
@@ -203,8 +221,8 @@ export default function Home() {
               start="top 85%"
             >
               {[
-                "Un artisanat de haute qualité",
-                "Bois massif & éco-responsabilité",
+                t("home.features.quality"),
+                t("home.features.sustainability"),
                 "Solutions Personnalisées",
                 "Design & fonctionnalité",
               ].map((text, index) => (
@@ -261,14 +279,10 @@ export default function Home() {
           <div>
             <AnimatedText delay={0.0} stagger={0.3}>
               <h2 className="font-ITCGaramondN text-4xl leading-none md:max-w-xl md:text-6xl">
-                Meubles en bois sur mesure pour votre intérieur
+                {t("home.subtitle")}
               </h2>
               <p className="font-HelveticaNow mt-8 max-w-xl text-lg">
-                Vous cherchez un artisan menuisier en Belgique pour créer des
-                meubles en bois sur mesure ? <br />
-                Nemwood est spécialisé dans la fabrication artisanale de tables,
-                chaises, garde-robes, escaliers et même de décors pour le
-                cinéma.
+                {t("home.description")}
               </p>
             </AnimatedText>
           </div>
@@ -294,28 +308,25 @@ export default function Home() {
 
       {/* FAQ Section */}
       <FAQ
-        title="Questions fréquentes"
-        description="Trouvez les réponses aux questions les plus courantes sur nos services de menuiserie sur mesure en Belgique."
+        title={t("home.faq.title")}
+        description={t("home.faq.description")}
+        translationKey="home.faq.title"
         faqs={[
           {
-            question: "Proposez-vous des devis gratuits ?",
-            answer:
-              "Oui, nous proposons des devis gratuits et sans engagement pour tous nos projets de menuiserie sur mesure. Contactez-nous pour planifier une visite et discuter de vos besoins.",
+            question: t("home.faq.questions.quotes"),
+            answer: t("home.faq.answers.quotes"),
           },
           {
-            question: "Quels types de bois utilisez-vous ?",
-            answer:
-              "Nous travaillons exclusivement avec du bois massif de qualité supérieure : chêne, hêtre, noyer, frêne et autres essences durables. Chaque essence est sélectionnée selon le projet et vos préférences esthétiques.",
+            question: t("home.faq.questions.wood"),
+            answer: t("home.faq.answers.wood"),
           },
           {
-            question: "Combien de temps prend la réalisation d'un projet ?",
-            answer:
-              "Les délais varient selon la complexité du projet. Un escalier simple prend 4-6 semaines, une garde-robe 3-4 semaines, et une cuisine complète 6-8 semaines. Nous vous fournissons un planning détaillé lors du devis.",
+            question: t("home.faq.questions.timing"),
+            answer: t("home.faq.answers.timing"),
           },
           {
-            question: "Travaillez-vous dans toute la Belgique ?",
-            answer:
-              "Oui, nous intervenons dans toute la Belgique. Nos artisans se déplacent pour les mesures, l'installation et le suivi de vos projets, quel que soit votre lieu de résidence.",
+            question: t("home.faq.questions.belgium"),
+            answer: t("home.faq.answers.belgium"),
           },
         ]}
       />
@@ -325,7 +336,7 @@ export default function Home() {
         <div className="flex w-full">
           <AnimatedText delay={0.0} stagger={0.3}>
             <h2 className="font-ITCGaramondN text-primary text-5xl md:text-7xl">
-              Actualités
+              {t("home.news.title")}
             </h2>
           </AnimatedText>
         </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Navigation from "@/components/Navigation7";
+import Navigation from "@/components/Navigation8";
 import Footer from "@/components/Footer";
 import LenisProvider from "@/components/LenisProvider";
 import { ScrollToTop } from "@/components/ScrollToTop";

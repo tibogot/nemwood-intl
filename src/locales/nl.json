@@ -10,6 +10,105 @@
     "loading": "Laden...",
     "error": "Fout",
     "success": "Succes"
+  },
+  "home": {
+    "title": "Op maat gemaakte houten meubels",
+    "subtitle": "Op maat gemaakte houten meubels voor uw interieur",
+    "description": "Zoekt u een ambachtsman timmerman in België om op maat gemaakte houten meubels te creëren? Nemwood is gespecialiseerd in de ambachtelijke vervaardiging van tafels, stoelen, kasten, trappen en zelfs decors voor de cinema.",
+    "expertise": "Onze expertise",
+    "expertise_description": "Bij Nemwood, ambachtsman meubelmaker in België, wordt elk meubel op maat ontworpen in onze werkplaats. Gespecialiseerd in de vervaardiging van massief houten meubels, creëren we op maat gemaakte keukens, woonkamer meubilair, trappen en unieke inrichtingen. Onze ambachtelijke knowhow geeft voorrang aan duurzaam massief hout, handmatig bewerkt voor authentieke en gepersonaliseerde creaties.",
+    "features": {
+      "quality": "Hoogwaardig vakmanschap",
+      "sustainability": "Massief hout & eco-responsabiliteit"
+    },
+    "news": {
+      "title": "Nieuws"
+    },
+    "faq": {
+      "title": "Veelgestelde vragen",
+      "description": "Vind de antwoorden op de meest gestelde vragen over onze op maat gemaakte timmerwerkdiensten in België.",
+      "questions": {
+        "quotes": "Bieden jullie gratis offertes aan?",
+        "wood": "Welke soorten hout gebruiken jullie?",
+        "timing": "Hoe lang duurt de realisatie van een project?",
+        "belgium": "Werken jullie in heel België?"
+      },
+      "answers": {
+        "quotes": "Ja, wij bieden gratis en vrijblijvende offertes voor al onze op maat gemaakte timmerwerkprojecten. Neem contact met ons op om een bezoek te plannen en uw behoeften te bespreken.",
+        "wood": "Wij werken uitsluitend met hoogwaardig massief hout: eiken, beuken, noten, essen en andere duurzame houtsoorten. Elke houtsoort wordt geselecteerd volgens het project en uw esthetische voorkeuren.",
+        "timing": "De termijnen variëren volgens de complexiteit van het project. Een eenvoudige trap neemt 4-6 weken, een kast 3-4 weken, en een complete keuken 6-8 weken. Wij voorzien u van een gedetailleerd planning bij de offerte.",
+        "belgium": "Ja, wij werken in heel België. Onze ambachtslieden verplaatsen zich voor metingen, installatie en opvolging van uw projecten, ongeacht uw woonplaats."
+      }
+    },
+    "services": {
+      "title": "Onze ambachtelijke\nspecialiteiten",
+      "description": "Ontdek ons complete assortiment: op maat gemaakte trappen, gepersonaliseerde kasten, unieke tafels en massief houten keukens. Elke creatie is ontworpen om perfect te harmoniseren met uw interieur.",
+      "learn_more": "Meer weten",
+      "learn_more_aria": "Meer weten over onze",
+      "gallery": {
+        "alt_left": "Realisatie - Op maat gemaakte houten meubels door Nemwood, ambachtsman timmerman in België",
+        "alt_right": "Ambachtelijk meubilair in massief hout gecreëerd door Nemwood in België"
+      },
+      "stairs": {
+        "title": "Trappen",
+        "description": "Voeg karakter toe aan uw interieur met een op maat gemaakte houten trap, die robuustheid, esthetiek en ambachtelijke afwerking combineert."
+      },
+      "wardrobes": {
+        "title": "Kasten",
+        "description": "Ontwerp een massief houten kast die bij u past: warm, functioneel en volledig gepersonaliseerd volgens uw behoeften en ruimte."
+      },
+      "tables": {
+        "title": "Tafels",
+        "description": "Creëer uw op maat gemaakte houten tafel: het middelpunt van uw huis, uniek, duurzaam en handgemaakt in onze werkplaats."
+      },
+      "kitchens": {
+        "title": "Keukens",
+        "description": "Ontwerp een massief houten keuken die bij u past: warm, functioneel en volledig gepersonaliseerd volgens uw behoeften en ruimte."
+      }
+    },
+    "textreveal": {
+      "part1": "Laten we iets",
+      "part2": "ongelooflijks",
+      "part3": "samen creëren"
+    },
+    "testimonials": {
+      "title": "Getuigenissen",
+      "testimonial1": {
+        "name": "Sophie Dubois",
+        "text": "Het team van Nemwood heeft een op maat gemaakte keuken gecreëerd die al onze verwachtingen overtreft. Elk detail is zorgvuldig doordacht en het vakmanschap is van uitzonderlijke kwaliteit."
+      },
+      "testimonial2": {
+        "name": "Marc Lefevre",
+        "text": "Onze massief houten trap is het middelpunt van ons huis geworden. Meesterlijk werk dat schoonheid en functionaliteit combineert."
+      },
+      "testimonial3": {
+        "name": "Claire Martinez",
+        "text": "Perfect geïntegreerde kasten die onze ruimte optimaliseren. Traditioneel vakmanschap ten dienste van hedendaags design."
+      }
+    }
+  },
+  "services": {
+    "hero": {
+      "title": "Onze Diensten",
+      "description": "Ontdek ons complete assortiment van op maat gemaakte timmerwerkdiensten in België. Elke creatie is ontworpen om perfect te harmoniseren met uw interieur."
+    },
+    "creativity": {
+      "title": "Creativiteit om te ontwerpen",
+      "description": "Zoekt u een ambachtsman timmerman in België om op maat gemaakte houten meubels te creëren? Nemwood is gespecialiseerd in de ambachtelijke vervaardiging van tafels, stoelen, kasten, trappen en zelfs decors voor de cinema."
+    }
+  },
+  "about": {
+    "hero": {
+      "title": "Over ons",
+      "description": "Zoekt u een ambachtsman timmerman in België om op maat gemaakte houten meubels te creëren? Nemwood is gespecialiseerd in de ambachtelijke vervaardiging van tafels, stoelen, kasten, trappen en zelfs decors voor de cinema."
+    },
+    "section": {
+      "title": "Over ons",
+      "description": "Op maat gemaakt meubilair: wanneer ruimte en stijl perfect samenkomen. Zoekt u meubilair dat echt past bij uw interieur? Op maat maken is de oplossing. Elk stuk wordt ontworpen volgens de exacte afmetingen van uw ruimte om elke hoek te optimaliseren. Meer dan alleen een meubel, het is een unieke creatie die uw stijl weergeeft dankzij de keuze van materialen, afwerkingen en gepersonaliseerde details. Praktisch en ergonomisch, het voldoet aan uw specifieke behoeften: slimme opslag, multifunctionele oplossingen, unieke indelingen... alles is mogelijk. Gemaakt door gepassioneerde ambachtslieden, uw meubilair combineert stevigheid, duurzaamheid en esthetiek. Resultaat: een harmonieus en functioneel interieur dat in de loop van de tijd aan waarde wint."
+    },
+    "creativity": {
+      "title": "Creativiteit om te ontwerpen",
+      "description": "Zoekt u een ambachtsman timmerman in België om op maat gemaakte houten meubels te creëren? Nemwood is gespecialiseerd in de ambachtelijke vervaardiging van tafels, stoelen, kasten, trappen en zelfs decors voor de cinema."
+    }
   }
 }
-

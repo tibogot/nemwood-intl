@@ -24,6 +24,21 @@ const nextConfig: NextConfig = {
   },
   poweredByHeader: false,
   compress: true,
+  // Redirects for SEO - old /nl/services to new /nl/diensten
+  async redirects() {
+    return [
+      {
+        source: "/nl/services",
+        destination: "/nl/diensten",
+        permanent: true,
+      },
+      {
+        source: "/nl/services/:path*",
+        destination: "/nl/diensten/:path*",
+        permanent: true,
+      },
+    ];
+  },
   // Optimize file watching for better performance
   webpack: (config, { dev }) => {
     if (dev) {

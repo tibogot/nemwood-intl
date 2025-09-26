@@ -8,14 +8,56 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 import Logo from "./Logo";
 import { ArrowRight } from "lucide-react";
+import { useTranslation } from "@/hooks/useTranslation";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 function CardsScroll() {
+  const { t, language } = useTranslation();
   const mainContentRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLParagraphElement>(null);
   const descriptionRef = useRef<HTMLParagraphElement>(null);
   const mainRef = useRef<HTMLElement>(null); // Add ref for main section
+
+  // Helper function to get translated text with fallback
+  const getTranslation = (key: string, fallback: string) => {
+    const translated = t(key);
+    return translated === key ? fallback : translated;
+  };
+
+  // Get translations with fallbacks
+  const title = getTranslation(
+    "home.services.title",
+    language === "nl"
+      ? "Onze ambachtelijke\nspecialiteiten"
+      : "Nos spécialités\nartisanales",
+  );
+
+  const description = getTranslation(
+    "home.services.description",
+    language === "nl"
+      ? "Ontdek ons complete assortiment: op maat gemaakte trappen, gepersonaliseerde kasten, unieke tafels en massief houten keukens. Elke creatie is ontworpen om perfect te harmoniseren met uw interieur."
+      : "Découvrez notre gamme complète : escaliers sur mesure, garde-robes personnalisées, tables uniques et cuisines en bois massif. Chaque création est pensée pour s'harmoniser parfaitement avec votre intérieur.",
+  );
+
+  const learnMore = getTranslation(
+    "home.services.learn_more",
+    language === "nl" ? "Meer weten" : "En savoir plus",
+  );
+
+  const altLeft = getTranslation(
+    "home.services.gallery.alt_left",
+    language === "nl"
+      ? "Realisatie - Op maat gemaakte houten meubels door Nemwood, ambachtsman timmerman in België"
+      : "Réalisation - Meubles en bois sur mesure par Nemwood, menuisier artisan en Belgique",
+  );
+
+  const altRight = getTranslation(
+    "home.services.gallery.alt_right",
+    language === "nl"
+      ? "Ambachtelijk meubilair in massief hout gecreëerd door Nemwood in België"
+      : "Mobilier artisanal en bois massif créé par Nemwood en Belgique",
+  );
 
   // Store ScrollTrigger instances for proper cleanup
   const scrollTriggersRef = useRef<ScrollTrigger[]>([]);
@@ -162,7 +204,7 @@ function CardsScroll() {
 
     // Return cleanup function
     return cleanup;
-  }, []);
+  }, [title, description, language]);
 
   const generateRows = () => {
     const rows = [];
@@ -172,7 +214,7 @@ function CardsScroll() {
           <div className="card card-left relative h-[240px] w-[50%] overflow-hidden rounded-sm will-change-transform md:h-[360px] md:w-[40%]">
             <Image
               src={`/img-${2 * i - 1}.webp`}
-              alt={`Réalisation ${2 * i - 1} - Meubles en bois sur mesure par Nemwood, menuisier artisan en Belgique`}
+              alt={altLeft}
               fill
               sizes="(max-width: 768px) 50vw, 40vw"
               className="object-cover"
@@ -182,7 +224,7 @@ function CardsScroll() {
           <div className="card card-right relative h-[240px] w-[50%] overflow-hidden rounded-sm will-change-transform md:h-[360px] md:w-[40%]">
             <Image
               src={`/img-${2 * i}.webp`}
-              alt={`Réalisation ${2 * i} - Mobilier artisanal en bois massif créé par Nemwood en Belgique`}
+              alt={altRight}
               fill
               sizes="(max-width: 768px) 50vw, 40vw"
               className="object-cover"
@@ -208,22 +250,18 @@ function CardsScroll() {
         >
           <div className="copy text-primary flex flex-col items-center justify-center">
             <h3 className="text-5xl md:text-7xl" ref={titleRef}>
-              Nos spécialités <br />
-              artisanales
+              {title}
             </h3>
             <p
               ref={descriptionRef}
               className="font-HelveticaNow mx-auto mt-8 text-lg md:max-w-lg"
             >
-              Découvrez notre gamme complète : escaliers sur mesure, garde-robes
-              personnalisées, tables uniques et cuisines en bois massif. Chaque
-              création est pensée pour s'harmoniser parfaitement avec votre
-              intérieur.
+              {description}
             </p>
             <Link href="/services">
               <button className="font-HelveticaNow mt-10">
                 <div className="border-primary hover:bg-primary hover:text-secondary flex cursor-pointer items-center border border-solid px-4 py-2 transition-colors duration-300 ease-in-out">
-                  <span>En savoir plus</span>
+                  <span>{learnMore}</span>
                   <div className="mt-0.5 ml-1">
                     <ArrowRight size={18} strokeWidth={1.5} />
                   </div>

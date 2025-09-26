@@ -4,6 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { getLocalizedRoute } from "@/utils/navigation";
+import { useTranslation } from "@/hooks/useTranslation";
 
 const services = [
   { name: "Escaliers", slug: "escaliers", image: "/images/stairs.webp" },
@@ -25,10 +27,11 @@ const services = [
 
 export default function ServiceNavigation() {
   const pathname = usePathname();
+  const { language } = useTranslation();
 
   // Get current service index
-  const currentServiceIndex = services.findIndex(
-    (service) => pathname === `/services/${service.slug}`,
+  const currentServiceIndex = services.findIndex((service) =>
+    pathname.includes(`/${service.slug}`),
   );
 
   // If not found, don't render navigation
@@ -51,7 +54,10 @@ export default function ServiceNavigation() {
         <div className="flex flex-col gap-8 md:flex-row md:justify-between">
           {/* Previous Service */}
           <Link
-            href={`/services/${previousService.slug}`}
+            href={getLocalizedRoute(
+              `services/${previousService.slug}`,
+              language,
+            )}
             className="group flex-1 cursor-pointer"
           >
             <div className="flex items-center gap-4">
@@ -78,7 +84,7 @@ export default function ServiceNavigation() {
           {/* Back to Services Button */}
           <div className="flex items-center justify-center">
             <Link
-              href="/services"
+              href={getLocalizedRoute("services", language)}
               className="font-HelveticaNow border-primary hover:bg-primary hover:text-secondary flex cursor-pointer items-center border border-solid px-6 py-3 transition-colors duration-300 ease-in-out"
             >
               <span>Retour aux services</span>
@@ -87,7 +93,7 @@ export default function ServiceNavigation() {
 
           {/* Next Service */}
           <Link
-            href={`/services/${nextService.slug}`}
+            href={getLocalizedRoute(`services/${nextService.slug}`, language)}
             className="group flex-1 cursor-pointer"
           >
             <div className="flex items-center gap-4">

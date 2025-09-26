@@ -1,3 +1,5 @@
+"use client";
+
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
@@ -6,26 +8,68 @@ import AnimatedText from "@/components/AnimatedText3";
 import ParallaxImage from "@/components/ParallaxImage";
 import StickyStackScroll from "@/components/StickyStackScroll4";
 import { generateMetadata } from "@/app/metadata";
+import { useTranslation } from "@/hooks/useTranslation";
 
-export const metadata: Metadata = generateMetadata(
-  "À propos de Nemwood - Artisan menuisier en Belgique | Nemwood",
-  "Découvrez Nemwood, artisan menuisier belge spécialisé dans la fabrication de meubles en bois sur mesure : tables, garde-robes, escaliers et cuisines.",
-  "/images/wardrobe.webp",
-  "https://www.nemwood.be/about",
-);
+// Note: Metadata moved to layout.tsx since this is now a client component
 
 export default function About() {
+  const { t, language } = useTranslation();
+
+  // Helper function to get translated text with fallback
+  const getTranslation = (key: string, fallback: string) => {
+    const translated = t(key);
+    return translated === key ? fallback : translated;
+  };
+
+  // Get translations with fallbacks
+  const heroTitle = getTranslation(
+    "about.hero.title",
+    language === "nl" ? "Over ons" : "A propos",
+  );
+
+  const heroDescription = getTranslation(
+    "about.hero.description",
+    language === "nl"
+      ? "Zoekt u een ambachtsman timmerman in België om op maat gemaakte houten meubels te creëren? Nemwood is gespecialiseerd in de ambachtelijke vervaardiging van tafels, stoelen, kasten, trappen en zelfs decors voor de cinema."
+      : "Vous cherchez un artisan menuisier en Belgique pour créer des meubles en bois sur mesure ? Nemwood est spécialisé dans la fabrication artisanale de tables, chaises, garde-robes, escaliers et même de décors pour le cinéma.",
+  );
+
+  const aboutSectionTitle = getTranslation(
+    "about.section.title",
+    language === "nl" ? "Over ons" : "A propos",
+  );
+
+  const aboutSectionDescription = getTranslation(
+    "about.section.description",
+    language === "nl"
+      ? "Op maat gemaakt meubilair: wanneer ruimte en stijl perfect samenkomen. Zoekt u meubilair dat echt past bij uw interieur? Op maat maken is de oplossing. Elk stuk wordt ontworpen volgens de exacte afmetingen van uw ruimte om elke hoek te optimaliseren. Meer dan alleen een meubel, het is een unieke creatie die uw stijl weergeeft dankzij de keuze van materialen, afwerkingen en gepersonaliseerde details. Praktisch en ergonomisch, het voldoet aan uw specifieke behoeften: slimme opslag, multifunctionele oplossingen, unieke indelingen... alles is mogelijk. Gemaakt door gepassioneerde ambachtslieden, uw meubilair combineert stevigheid, duurzaamheid en esthetiek. Resultaat: een harmonieus en functioneel interieur dat in de loop van de tijd aan waarde wint."
+      : "Mobilier sur mesure : quand l'espace et le style s'accordent parfaitement Vous cherchez un mobilier qui s'adapte vraiment à votre intérieur ? Le sur mesure est la solution. Chaque pièce est conçue selon les dimensions exactes de votre espace pour optimiser chaque recoin. Plus qu'un simple meuble, c'est une création unique qui reflète votre style grâce au choix des matériaux, finitions et détails personnalisés. Pratique et ergonomique, il répond à vos besoins précis : rangements intelligents, solutions multifonctionnelles, agencements uniques… tout est possible. Fabriqué par des artisans passionnés, votre mobilier allie solidité, durabilité et esthétique. Résultat : un intérieur harmonieux et fonctionnel, qui prend de la valeur avec le temps.",
+  );
+
+  const creativityTitle = getTranslation(
+    "about.creativity.title",
+    language === "nl" ? "Creativiteit om te ontwerpen" : "Creativity to design",
+  );
+
+  const creativityDescription = getTranslation(
+    "about.creativity.description",
+    language === "nl"
+      ? "Zoekt u een ambachtsman timmerman in België om op maat gemaakte houten meubels te creëren? Nemwood is gespecialiseerd in de ambachtelijke vervaardiging van tafels, stoelen, kasten, trappen en zelfs decors voor de cinema."
+      : "Vous cherchez un artisan menuisier en Belgique pour créer des meubles en bois sur mesure ? Nemwood est spécialisé dans la fabrication artisanale de tables, chaises, garde-robes, escaliers et même de décors pour le cinéma.",
+  );
   return (
     <div className="wrapper bg-secondary text-primary">
       <section className="px-4 py-40 md:px-8 md:py-64">
         <div className="mx-auto max-w-4xl text-center">
-          <AnimatedText isHero delay={0.0} stagger={0.3}>
-            <h1 className="mb-6 text-5xl md:text-7xl">A propos</h1>
+          <AnimatedText
+            isHero
+            delay={0.0}
+            stagger={0.3}
+            translationKey="about.hero.title"
+          >
+            <h1 className="mb-6 text-5xl md:text-7xl">{heroTitle}</h1>
             <p className="font-HelveticaNow mx-auto max-w-2xl text-lg">
-              Vous cherchez un artisan menuisier en Belgique pour créer des
-              meubles en bois sur mesure ? Nemwood est spécialisé dans la
-              fabrication artisanale de tables, chaises, garde-robes, escaliers
-              et même de décors pour le cinéma.
+              {heroDescription}
             </p>
           </AnimatedText>
         </div>
@@ -47,27 +91,16 @@ export default function About() {
       <section className="border-b-primary flex w-full flex-col gap-10 border-b border-solid px-4 py-20 md:flex-row md:px-8 md:py-40">
         <div className="left md:w-1/2">
           <div>
-            <AnimatedText>
+            <AnimatedText translationKey="about.section.title">
               {/* <h4 className="font-HelveticaNow text-primary/70 text-sm">
                 FROM IDEA TO IMPACT
               </h4> */}
               <h3 className="font-ITCGaramondN text-6xl leading-none md:max-w-xl">
-                A propos
+                {aboutSectionTitle}
               </h3>
             </AnimatedText>
             <p className="font-HelveticaNow pt-8 text-lg md:max-w-xl md:pt-60">
-              Mobilier sur mesure : quand l’espace et le style s’accordent
-              parfaitement Vous cherchez un mobilier qui s’adapte vraiment à
-              votre intérieur ? Le sur mesure est la solution. Chaque pièce est
-              conçue selon les dimensions exactes de votre espace pour optimiser
-              chaque recoin. Plus qu’un simple meuble, c’est une création unique
-              qui reflète votre style grâce au choix des matériaux, finitions et
-              détails personnalisés. Pratique et ergonomique, il répond à vos
-              besoins précis : rangements intelligents, solutions
-              multifonctionnelles, agencements uniques… tout est possible.
-              Fabriqué par des artisans passionnés, votre mobilier allie
-              solidité, durabilité et esthétique. Résultat : un intérieur
-              harmonieux et fonctionnel, qui prend de la valeur avec le temps.
+              {aboutSectionDescription}
             </p>
           </div>
         </div>
@@ -172,15 +205,16 @@ export default function About() {
         </ParallaxImage>
       </section>
       <section className="text-primary bg-secondary intro mx-auto px-4 py-20 text-center md:px-8 md:py-20">
-        <AnimatedText delay={0.0} stagger={0.3}>
+        <AnimatedText
+          delay={0.0}
+          stagger={0.3}
+          translationKey="about.creativity.title"
+        >
           <h3 className="font-ITCGaramondN mx-auto mb-6 max-w-4xl text-6xl">
-            Creativity to design
+            {creativityTitle}
           </h3>
           <p className="font-HelveticaNow mx-auto max-w-2xl text-lg">
-            Vous cherchez un artisan menuisier en Belgique pour créer des
-            meubles en bois sur mesure ? Nemwood est spécialisé dans la
-            fabrication artisanale de tables, chaises, garde-robes, escaliers et
-            même de décors pour le cinéma.
+            {creativityDescription}
           </p>
         </AnimatedText>
       </section>

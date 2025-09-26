@@ -45,6 +45,7 @@ interface AnimatedTextProps {
   ease?: string;
   className?: string;
   isHero?: boolean; // New prop for hero text
+  translationKey?: string; // Add translation key to track language changes
 }
 
 function AnimatedText({
@@ -58,6 +59,7 @@ function AnimatedText({
   ease = "power2.out",
   className = "",
   isHero = false,
+  translationKey,
 }: AnimatedTextProps) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const splitRefs = useRef<any[]>([]); // Store all SplitText instances for cleanup
@@ -326,6 +328,8 @@ function AnimatedText({
         fontsReady,
         pageLoaderReady,
         isHero,
+        translationKey, // Add translation key to dependencies
+        // Removed children from dependencies to prevent re-animation on state changes
       ],
     },
   );

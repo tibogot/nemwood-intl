@@ -14,6 +14,7 @@ interface FAQProps {
   description?: string;
   faqs: FAQItem[];
   className?: string;
+  translationKey?: string;
 }
 
 export default function FAQ({
@@ -21,6 +22,7 @@ export default function FAQ({
   description = "Trouvez les réponses aux questions les plus courantes sur nos services de menuiserie sur mesure.",
   faqs,
   className = "",
+  translationKey,
 }: FAQProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
@@ -35,7 +37,11 @@ export default function FAQ({
       <div className="flex flex-col gap-8 md:flex-row md:gap-12">
         {/* Left Column - Title and Description */}
         <div className="w-full md:w-1/2">
-          <AnimatedText delay={0.0} stagger={0.3}>
+          <AnimatedText
+            delay={0.0}
+            stagger={0.3}
+            translationKey={translationKey}
+          >
             <h2 className="font-ITCGaramondN mb-6 text-5xl leading-none md:max-w-lg md:text-7xl">
               {title}
             </h2>

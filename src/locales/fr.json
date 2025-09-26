@@ -10,6 +10,105 @@
     "loading": "Chargement...",
     "error": "Erreur",
     "success": "Succès"
+  },
+  "home": {
+    "title": "Meubles en bois sur mesure",
+    "subtitle": "Meubles en bois sur mesure pour votre intérieur",
+    "description": "Vous cherchez un artisan menuisier en Belgique pour créer des meubles en bois sur mesure ? Nemwood est spécialisé dans la fabrication artisanale de tables, chaises, garde-robes, escaliers et même de décors pour le cinéma.",
+    "expertise": "Notre savoir-faire",
+    "expertise_description": "Chez Nemwood, artisan ébéniste en Belgique, chaque meuble est conçu sur mesure dans notre atelier. Spécialisés dans la fabrication de meubles en bois massif, nous créons des cuisines sur mesure, mobilier de salon, escaliers et aménagements uniques. Notre savoir-faire artisanal privilégie le bois massif durable, travaillé à la main pour des créations authentiques et personnalisées.",
+    "features": {
+      "quality": "Un artisanat de haute qualité",
+      "sustainability": "Bois massif & éco-responsabilité"
+    },
+    "news": {
+      "title": "Actualités"
+    },
+    "faq": {
+      "title": "Questions fréquentes",
+      "description": "Trouvez les réponses aux questions les plus courantes sur nos services de menuiserie sur mesure en Belgique.",
+      "questions": {
+        "quotes": "Proposez-vous des devis gratuits ?",
+        "wood": "Quels types de bois utilisez-vous ?",
+        "timing": "Combien de temps prend la réalisation d'un projet ?",
+        "belgium": "Travaillez-vous dans toute la Belgique ?"
+      },
+      "answers": {
+        "quotes": "Oui, nous proposons des devis gratuits et sans engagement pour tous nos projets de menuiserie sur mesure. Contactez-nous pour planifier une visite et discuter de vos besoins.",
+        "wood": "Nous travaillons exclusivement avec du bois massif de qualité supérieure : chêne, hêtre, noyer, frêne et autres essences durables. Chaque essence est sélectionnée selon le projet et vos préférences esthétiques.",
+        "timing": "Les délais varient selon la complexité du projet. Un escalier simple prend 4-6 semaines, une garde-robe 3-4 semaines, et une cuisine complète 6-8 semaines. Nous vous fournissons un planning détaillé lors du devis.",
+        "belgium": "Oui, nous intervenons dans toute la Belgique. Nos artisans se déplacent pour les mesures, l'installation et le suivi de vos projets, quel que soit votre lieu de résidence."
+      }
+    },
+    "services": {
+      "title": "Nos spécialités\nartisanales",
+      "description": "Découvrez notre gamme complète : escaliers sur mesure, garde-robes personnalisées, tables uniques et cuisines en bois massif. Chaque création est pensée pour s'harmoniser parfaitement avec votre intérieur.",
+      "learn_more": "En savoir plus",
+      "learn_more_aria": "En savoir plus sur nos",
+      "gallery": {
+        "alt_left": "Réalisation - Meubles en bois sur mesure par Nemwood, menuisier artisan en Belgique",
+        "alt_right": "Mobilier artisanal en bois massif créé par Nemwood en Belgique"
+      },
+      "stairs": {
+        "title": "Escaliers",
+        "description": "Ajoutez du caractère à votre intérieur avec un escalier en bois sur mesure, alliant robustesse, esthétique et finition artisanale."
+      },
+      "wardrobes": {
+        "title": "Garde-robes",
+        "description": "Concevez une garde-robe en bois massif qui vous ressemble : chaleureuse, fonctionnelle et entièrement personnalisée selon vos besoins et votre espace."
+      },
+      "tables": {
+        "title": "Tables",
+        "description": "Créez votre table en bois sur mesure : pièce centrale de votre maison, unique, durable et façonnée à la main dans notre atelier."
+      },
+      "kitchens": {
+        "title": "Cuisines",
+        "description": "Concevez une cuisine en bois massif qui vous ressemble : chaleureuse, fonctionnelle et entièrement personnalisée selon vos besoins et votre espace."
+      }
+    },
+    "textreveal": {
+      "part1": "Créons quelque chose",
+      "part2": "d'incroyable",
+      "part3": "ensemble"
+    },
+    "testimonials": {
+      "title": "Témoignages",
+      "testimonial1": {
+        "name": "Sophie Dubois",
+        "text": "L'équipe de Nemwood a créé une cuisine sur mesure qui dépasse toutes nos attentes. Chaque détail a été pensé avec soin et l'artisanat est d'une qualité exceptionnelle."
+      },
+      "testimonial2": {
+        "name": "Marc Lefevre",
+        "text": "Notre escalier en bois massif est devenu la pièce maîtresse de notre maison. Un travail d'orfèvre qui allie beauté et fonctionnalité."
+      },
+      "testimonial3": {
+        "name": "Claire Martinez",
+        "text": "Des garde-robes parfaitement intégrées qui optimisent notre espace. Le savoir-faire traditionnel au service du design contemporain."
+      }
+    }
+  },
+  "services": {
+    "hero": {
+      "title": "Nos Services",
+      "description": "Découvrez notre gamme complète de services de menuiserie sur mesure en Belgique. Chaque création est pensée pour s'harmoniser parfaitement avec votre intérieur."
+    },
+    "creativity": {
+      "title": "Creativity to design",
+      "description": "Vous cherchez un artisan menuisier en Belgique pour créer des meubles en bois sur mesure ? Nemwood est spécialisé dans la fabrication artisanale de tables, chaises, garde-robes, escaliers et même de décors pour le cinéma."
+    }
+  },
+  "about": {
+    "hero": {
+      "title": "A propos",
+      "description": "Vous cherchez un artisan menuisier en Belgique pour créer des meubles en bois sur mesure ? Nemwood est spécialisé dans la fabrication artisanale de tables, chaises, garde-robes, escaliers et même de décors pour le cinéma."
+    },
+    "section": {
+      "title": "A propos",
+      "description": "Mobilier sur mesure : quand l'espace et le style s'accordent parfaitement Vous cherchez un mobilier qui s'adapte vraiment à votre intérieur ? Le sur mesure est la solution. Chaque pièce est conçue selon les dimensions exactes de votre espace pour optimiser chaque recoin. Plus qu'un simple meuble, c'est une création unique qui reflète votre style grâce au choix des matériaux, finitions et détails personnalisés. Pratique et ergonomique, il répond à vos besoins précis : rangements intelligents, solutions multifonctionnelles, agencements uniques… tout est possible. Fabriqué par des artisans passionnés, votre mobilier allie solidité, durabilité et esthétique. Résultat : un intérieur harmonieux et fonctionnel, qui prend de la valeur avec le temps."
+    },
+    "creativity": {
+      "title": "Creativity to design",
+      "description": "Vous cherchez un artisan menuisier en Belgique pour créer des meubles en bois sur mesure ? Nemwood est spécialisé dans la fabrication artisanale de tables, chaises, garde-robes, escaliers et même de décors pour le cinéma."
+    }
   }
 }
-

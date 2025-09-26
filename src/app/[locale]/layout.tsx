@@ -115,6 +115,15 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <head>
+        {/* Hreflang tags for multilingual SEO */}
+        <link rel="alternate" hrefLang="fr" href="https://www.nemwood.be/fr" />
+        <link rel="alternate" hrefLang="nl" href="https://www.nemwood.be/nl" />
+        <link
+          rel="alternate"
+          hrefLang="x-default"
+          href="https://www.nemwood.be/fr"
+        />
+
         {/* Next.js automatically handles font preloading and optimization */}
 
         {/* JSON-LD Structured Data for SEO */}

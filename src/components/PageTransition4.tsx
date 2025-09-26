@@ -4,10 +4,11 @@ import Logo from "./Logo3";
 import { useRef, ReactNode, useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 
-// Register the useGSAP hook
-gsap.registerPlugin(useGSAP);
+// Register the useGSAP hook and ScrollTrigger
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 interface PageTransitionProps {
   children: ReactNode;

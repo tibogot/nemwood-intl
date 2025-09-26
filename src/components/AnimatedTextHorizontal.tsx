@@ -297,9 +297,10 @@ function AnimatedTextHorizontal({
 
                   // For the first section, also animate on ScrollTrigger enter
                   if (sectionIndex === 0) {
-                    ScrollTrigger.create({
+                    const firstSectionTrigger = ScrollTrigger.create({
                       trigger: triggerElement,
                       start: "top center",
+                      id: `horizontal-text-first-${sectionIndex}`,
                       onEnter: () => {
                         if (
                           !textAnimation.isActive() &&
@@ -318,6 +319,12 @@ function AnimatedTextHorizontal({
                           });
                         }
                       },
+                    });
+
+                    // Store the ScrollTrigger for cleanup
+                    splitRefs.current.push({
+                      scrollTrigger: firstSectionTrigger,
+                      textAnimation,
                     });
                   }
 
@@ -384,6 +391,12 @@ function AnimatedTextHorizontal({
           } else if (item && item.observer) {
             // It's our custom object with observer
             item.observer.disconnect();
+            if (item.textAnimation) {
+              item.textAnimation.kill();
+            }
+          } else if (item && item.scrollTrigger) {
+            // It's our custom object with ScrollTrigger
+            item.scrollTrigger.kill();
             if (item.textAnimation) {
               item.textAnimation.kill();
             }

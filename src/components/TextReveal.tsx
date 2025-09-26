@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
+import { useTranslation } from "@/hooks/useTranslation";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -19,9 +20,28 @@ interface SplitTextInstance {
 const BlurryTextReveal: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
+  const { t, language, isLoading } = useTranslation();
+  const [animationReady, setAnimationReady] = useState(false);
+
+  // Helper function to get translated text with fallback
+  const getTranslation = (key: string, fallback: string) => {
+    const translated = t(key);
+    return translated === key ? fallback : translated;
+  };
+
+  // Track when animation is ready after language change
+  useEffect(() => {
+    setAnimationReady(false);
+    const timer = setTimeout(() => {
+      setAnimationReady(true);
+    }, 200); // Give time for DOM to update with new text
+    return () => clearTimeout(timer);
+  }, [language]);
 
   useGSAP(
     () => {
+      if (!animationReady) return;
+
       let splitInstance: SplitTextInstance | null = null;
 
       const setupAnimation = () => {
@@ -132,19 +152,34 @@ const BlurryTextReveal: React.FC = () => {
         ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
       };
     },
-    { scope: sectionRef },
+    { scope: sectionRef, dependencies: [animationReady, language] },
   );
+
+  // Show loading state while translations are loading
+  if (isLoading) {
+    return (
+      <section className="text-primary mx-auto w-full px-4 text-center md:px-8">
+        <div className="flex h-64 items-center justify-center">
+          <div className="font-HelveticaNow text-primary/60">Chargement...</div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section
       ref={sectionRef}
       className="text-primary mx-auto w-full px-4 text-center md:px-8"
+      key={`textreveal-${language}`}
     >
       <span
         ref={titleRef}
         className="font-ITCGaramondN mx-auto max-w-6xl text-6xl md:text-9xl"
       >
-        Créons quelque chose{" "}
+        {getTranslation(
+          "textreveal.part1",
+          language === "nl" ? "Laten we iets" : "Créons quelque chose",
+        )}{" "}
         <span
           className="font-ITCGaramondNI"
           style={{
@@ -154,9 +189,15 @@ const BlurryTextReveal: React.FC = () => {
             WebkitTextSizeAdjust: "none",
           }}
         >
-          d'incroyable
+          {getTranslation(
+            "textreveal.part2",
+            language === "nl" ? "ongelooflijks" : "d'incroyable",
+          )}
         </span>{" "}
-        ensemble
+        {getTranslation(
+          "textreveal.part3",
+          language === "nl" ? "samen creëren" : "ensemble",
+        )}
       </span>
     </section>
   );

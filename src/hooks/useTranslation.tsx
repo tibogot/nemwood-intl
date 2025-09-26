@@ -3,7 +3,7 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   routeTranslations,
   defaultLocale,
@@ -15,6 +15,7 @@ interface TranslationContextType {
   language: Language;
   changeLanguage: (newLanguage: Language) => void;
   toggleLanguage: () => void;
+  isLoading: boolean;
 }
 
 const TranslationContext = createContext<TranslationContextType | undefined>(
@@ -27,6 +28,7 @@ export function TranslationProvider({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
+  const router = useRouter();
 
   const [language, setLanguage] = useState<Language>(() => {
     // Try localStorage first, then URL, then default
@@ -41,13 +43,17 @@ export function TranslationProvider({
   });
 
   const [translations, setTranslations] = useState<any>({});
+  const [isLoading, setIsLoading] = useState(false);
 
   const loadTranslations = async (lang: Language) => {
+    setIsLoading(true);
     try {
       const response = await import(`@/locales/${lang}.json`);
       setTranslations(response.default);
     } catch (error) {
       console.error(`Failed to load translations for ${lang}:`, error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -69,6 +75,11 @@ export function TranslationProvider({
   }, [language]);
 
   const t = (key: string): string => {
+    // If translations are loading, return a placeholder or the key
+    if (isLoading && Object.keys(translations).length === 0) {
+      return key;
+    }
+
     const keys = key.split(".");
     let value: any = translations;
 
@@ -106,14 +117,18 @@ export function TranslationProvider({
   };
 
   const changeLanguage = async (newLanguage: Language) => {
-    const newPath = translateRoute(pathname || "/", newLanguage);
-    // Use history API to avoid page reload
-    window.history.replaceState({}, "", newPath);
-    setLanguage(newLanguage);
+    // Prevent multiple rapid language changes
+    if (newLanguage === language) return;
 
+    const newPath = translateRoute(pathname || "/", newLanguage);
+
+    // Update localStorage first
     if (typeof window !== "undefined") {
       localStorage.setItem("preferred-language", newLanguage);
     }
+
+    // Use Next.js router to navigate, which will trigger page transitions
+    router.push(newPath);
   };
 
   const toggleLanguage = async () => {
@@ -123,7 +138,7 @@ export function TranslationProvider({
 
   return (
     <TranslationContext.Provider
-      value={{ t, language, changeLanguage, toggleLanguage }}
+      value={{ t, language, changeLanguage, toggleLanguage, isLoading }}
     >
       {children}
     </TranslationContext.Provider>

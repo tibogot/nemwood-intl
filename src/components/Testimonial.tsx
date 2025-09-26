@@ -1,44 +1,93 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useMemo } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import Image from "next/image";
 import AnimatedText from "./AnimatedText3";
+import { useTranslation } from "@/hooks/useTranslation";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const testimonials = [
-  {
-    name: "Sophie Dubois",
-    text: `L'équipe de Nemwood a créé une cuisine sur mesure qui dépasse toutes nos attentes. Chaque détail a été pensé avec soin et l'artisanat est d'une qualité exceptionnelle.`,
-    image: "/images/profile-1.webp",
-  },
-  {
-    name: "Marc Lefevre",
-    text: `Notre escalier en bois massif est devenu la pièce maîtresse de notre maison. Un travail d'orfèvre qui allie beauté et fonctionnalité.`,
-    image: "/images/profile-2.webp",
-  },
-  {
-    name: "Claire Martinez",
-    text: `Des garde-robes parfaitement intégrées qui optimisent notre espace. Le savoir-faire traditionnel au service du design contemporain.`,
-    image: "/images/profile-3.webp",
-  },
-];
-
 export default function Testimonial() {
+  const { t, language } = useTranslation();
   const containerRef = useRef<HTMLDivElement>(null);
+
+  // Helper function to get translated text with fallback
+  const getTranslation = (key: string, fallback: string) => {
+    const translated = t(key);
+    return translated === key ? fallback : translated;
+  };
+
+  // Get title translation with fallback
+  const title = getTranslation(
+    "home.testimonials.title",
+    language === "nl" ? "Getuigenissen" : "Témoignages",
+  );
+
+  // Get testimonials with translations and fallbacks - use useMemo to prevent recreation
+  const testimonials = useMemo(
+    () => [
+      {
+        name: getTranslation(
+          "home.testimonials.testimonial1.name",
+          "Sophie Dubois",
+        ),
+        text: getTranslation(
+          "home.testimonials.testimonial1.text",
+          language === "nl"
+            ? "Het team van Nemwood heeft een op maat gemaakte keuken gecreëerd die al onze verwachtingen overtreft. Elk detail is zorgvuldig doordacht en het vakmanschap is van uitzonderlijke kwaliteit."
+            : "L'équipe de Nemwood a créé une cuisine sur mesure qui dépasse toutes nos attentes. Chaque détail a été pensé avec soin et l'artisanat est d'une qualité exceptionnelle.",
+        ),
+        image: "/images/profile-1.webp",
+      },
+      {
+        name: getTranslation(
+          "home.testimonials.testimonial2.name",
+          "Marc Lefevre",
+        ),
+        text: getTranslation(
+          "home.testimonials.testimonial2.text",
+          language === "nl"
+            ? "Onze massief houten trap is het middelpunt van ons huis geworden. Meesterlijk werk dat schoonheid en functionaliteit combineert."
+            : "Notre escalier en bois massif est devenu la pièce maîtresse de notre maison. Un travail d'orfèvre qui allie beauté et fonctionnalité.",
+        ),
+        image: "/images/profile-2.webp",
+      },
+      {
+        name: getTranslation(
+          "home.testimonials.testimonial3.name",
+          "Claire Martinez",
+        ),
+        text: getTranslation(
+          "home.testimonials.testimonial3.text",
+          language === "nl"
+            ? "Perfect geïntegreerde kasten die onze ruimte optimaliseren. Traditioneel vakmanschap ten dienste van hedendaags design."
+            : "Des garde-robes parfaitement intégrées qui optimisent notre espace. Le savoir-faire traditionnel au service du design contemporain.",
+        ),
+        image: "/images/profile-3.webp",
+      },
+    ],
+    [language, t],
+  );
 
   useGSAP(
     () => {
+      if (!containerRef.current) return;
+
       const ctx = gsap.context(() => {
         const cards = gsap.utils.toArray(".testimonial-card") as HTMLElement[];
+
+        // Safety check - make sure we have cards
+        if (!cards.length) {
+          console.warn("Testimonial component: No cards found");
+          return;
+        }
 
         // Set initial state for all cards
         gsap.set(cards, {
           y: "100vh",
-          // opacity: 0,
           scale: 0.8,
           rotation: 0,
         });
@@ -61,7 +110,6 @@ export default function Testimonial() {
             card,
             {
               y: 0,
-              // opacity: 1,
               scale: 1,
               rotation: (i - 1) * 3, // Slight rotation for stacking effect
               duration: 1,
@@ -74,8 +122,19 @@ export default function Testimonial() {
 
       return () => ctx.revert();
     },
-    { scope: containerRef },
+    { scope: containerRef, dependencies: [language] },
   );
+
+  // Debug: Check if testimonials are loading
+  if (!testimonials || testimonials.length === 0) {
+    return (
+      <section className="bg-secondary relative h-[100vh] overflow-hidden px-4 py-30 text-white md:px-8">
+        <div className="flex h-full items-center justify-center">
+          <p className="text-primary">Loading testimonials...</p>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <>
@@ -92,9 +151,13 @@ export default function Testimonial() {
           // priority
           loading="lazy"
         /> */}
-        <AnimatedText delay={0.0} stagger={0.3}>
+        <AnimatedText
+          delay={0.0}
+          stagger={0.3}
+          translationKey="home.testimonials.title"
+        >
           <h2 className="font-ITCGaramondN text-primary relative text-5xl leading-tight md:text-7xl">
-            Témoignages
+            {title}
           </h2>
         </AnimatedText>
         {/* <Image
@@ -110,7 +173,7 @@ export default function Testimonial() {
           <div className="relative">
             {testimonials.map((testimonial, i) => (
               <div
-                key={i}
+                key={`${language}-testimonial-${i}`}
                 className="testimonial-card border-primary bg-secondary absolute top-1/2 left-1/2 flex h-[400px] w-[320px] -translate-x-1/2 -translate-y-1/2 flex-col rounded-sm border p-6 md:h-[450px] md:w-[350px]"
                 style={{ zIndex: i + 1 }}
               >
