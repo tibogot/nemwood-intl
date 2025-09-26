@@ -1,0 +1,34 @@
+"use client";
+
+import React from "react";
+
+interface LogoProps {
+  className?: string;
+  width?: number;
+  height?: number;
+}
+
+const Logo: React.FC<LogoProps> = ({
+  className = "",
+  width = 48,
+  height = 48,
+}) => {
+  return (
+    <svg
+      viewBox="0 0 152 152"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      width={width}
+      height={height}
+      className={className}
+    >
+      <path
+        d="M74.6885 2L106.604 33.9141C108.875 36.1856 112.759 34.5767 112.759 31.3643V2H149.035V38.2764H119.67C116.458 38.2765 114.849 42.1601 117.12 44.4316L149.035 76.3457V149.035H76.3457L44.4316 117.12L44.2139 116.919C41.9209 114.951 38.2765 116.558 38.2764 119.67V149.035H2V112.759H31.3643C34.5767 112.759 36.1856 108.875 33.9141 106.604L2 74.6885V2H74.6885Z"
+        stroke="currentColor"
+        strokeWidth="4"
+      />
+    </svg>
+  );
+};
+
+export default Logo;

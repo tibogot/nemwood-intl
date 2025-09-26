@@ -1,0 +1,15 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "Over ons",
+    "services": "Diensten",
+    "contact": "Contact",
+    "blog": "Blog"
+  },
+  "common": {
+    "loading": "Laden...",
+    "error": "Fout",
+    "success": "Succes"
+  }
+}
+

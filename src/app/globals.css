@@ -1,0 +1,292 @@
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Ensure proper viewport handling on mobile */
+@supports (height: 100svh) {
+  .mobile-menu {
+    height: 100svh;
+  }
+}
+
+/* Fallback for browsers that don't support svh */
+@supports not (height: 100svh) {
+  .mobile-menu {
+    height: 100vh;
+  }
+}
+
+body {
+  font-display: swap;
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Optimize image loading */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* :root {
+  --background: #ffffff;
+  --foreground: #171717;
+} */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-ITCGaramondN: var(--font-ITCGaramondStdLtNarrow);
+  --font-ITCGaramondNI: var(--font-ITCGaramondStdLtNarrowIta);
+  --font-HelveticaNow: var(--font-HelveticaNow);
+  --font-NHD: var(--font-neue-haas-display);
+}
+@theme {
+  --color-primary: #38302a;
+  --color-secondary: #fffcf5;
+  --color-tertiary: #504630;
+  --color-accent: #89402c;
+}
+
+/* Dark mode theme */
+.dark {
+  --color-primary: #fffcf5;
+  --color-secondary: #1e1e1e;
+  --color-tertiary: #fffcf5;
+  --color-accent: #89402c;
+}
+
+@layer base {
+  h1 {
+    @apply font-ITCGaramondN text-5xl md:text-7xl;
+  }
+
+  h2 {
+    @apply font-ITCGaramondN text-4xl md:text-6xl;
+  }
+
+  h3 {
+    @apply font-ITCGaramondN text-3xl font-medium md:text-5xl;
+  }
+
+  /* p {
+    @apply text-base leading-relaxed text-neutral-800;
+  } */
+
+  /* a {
+    @apply text-blue-600 underline hover:text-blue-800;
+  } */
+}
+
+/* h3 {
+  @apply font-ITCGaramondN text-4xl md:text-8xl;
+} */
+
+/* .line {
+  position: relative;
+  margin: 0.5em 0;
+  width: max-content;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+} */
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+} */
+
+/* body {
+  background: var(--background);
+  color: var(--foreground);
+} */
+
+/* Hide scrollbar for horizontal carousel */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+/* Smooth scrolling for carousel */
+.scrollbar-hide {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* 🍪 Cookie Consent Custom Styles */
+/* Override default cookie consent styles to match Nemwood branding */
+
+/* Main consent modal */
+#cc-main .cm {
+  background: rgba(255, 255, 255, 0.98) !important;
+  backdrop-filter: blur(10px) !important;
+  border: 1px solid #8b4513 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Modal title */
+#cc-main .cm__title {
+  color: #2d1b0f !important;
+  font-family: var(--font-ITCGaramondStdLtNarrow) !important;
+  font-size: 1.5rem !important;
+  font-weight: 400 !important;
+}
+
+/* Modal description */
+#cc-main .cm__desc {
+  color: #5a4037 !important;
+  font-family: var(--font-HelveticaNow) !important;
+  font-size: 0.95rem !important;
+  line-height: 1.6 !important;
+}
+
+/* Buttons */
+#cc-main .cm__btn {
+  font-family: var(--font-HelveticaNow) !important;
+  font-size: 0.9rem !important;
+  font-weight: 500 !important;
+  padding: 12px 24px !important;
+  border-radius: 6px !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+}
+
+/* Accept all button */
+#cc-main .cm__btn--accept-all {
+  background: #8b4513 !important;
+  color: white !important;
+  border: 2px solid #8b4513 !important;
+}
+
+#cc-main .cm__btn--accept-all:hover {
+  background: #a0522d !important;
+  border-color: #a0522d !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Accept necessary button */
+#cc-main .cm__btn--accept-necessary {
+  background: transparent !important;
+  color: #8b4513 !important;
+  border: 2px solid #8b4513 !important;
+}
+
+#cc-main .cm__btn--accept-necessary:hover {
+  background: #8b4513 !important;
+  color: white !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Manage preferences button */
+#cc-main .cm__btn--show-preferences {
+  background: transparent !important;
+  color: #5a4037 !important;
+  border: 2px solid #d2b48c !important;
+}
+
+#cc-main .cm__btn--show-preferences:hover {
+  background: #d2b48c !important;
+  color: #2d1b0f !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Preferences modal */
+#cc-main .pm {
+  background: rgba(255, 255, 255, 0.98) !important;
+  backdrop-filter: blur(15px) !important;
+  border-radius: 16px !important;
+  border: 1px solid #8b4513 !important;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Preferences modal title */
+#cc-main .pm__title {
+  color: #2d1b0f !important;
+  font-family: var(--font-ITCGaramondStdLtNarrow) !important;
+  font-size: 1.8rem !important;
+  border-bottom: 2px solid #d2b48c !important;
+  padding-bottom: 1rem !important;
+}
+
+/* Section titles */
+#cc-main .pm__section-title {
+  color: #8b4513 !important;
+  font-family: var(--font-ITCGaramondStdLtNarrow) !important;
+  font-size: 1.2rem !important;
+  font-weight: 400 !important;
+}
+
+/* Section descriptions */
+#cc-main .pm__section-desc {
+  color: #5a4037 !important;
+  font-family: var(--font-HelveticaNow) !important;
+  line-height: 1.6 !important;
+}
+
+/* Toggle switches */
+#cc-main .toggle {
+  background: #d2b48c !important;
+}
+
+#cc-main .toggle.toggle--on {
+  background: #8b4513 !important;
+}
+
+#cc-main .toggle__icon {
+  background: white !important;
+}
+
+/* Cookie table */
+#cc-main .cookie-table {
+  border: 1px solid #d2b48c !important;
+  border-radius: 8px !important;
+}
+
+#cc-main .cookie-table th {
+  background: #f5e6d3 !important;
+  color: #8b4513 !important;
+  font-family: var(--font-HelveticaNow) !important;
+  font-weight: 600 !important;
+}
+
+#cc-main .cookie-table td {
+  color: #5a4037 !important;
+  font-family: var(--font-HelveticaNow) !important;
+  border-top: 1px solid #e8d5c4 !important;
+}
+
+/* Links */
+#cc-main a {
+  color: #8b4513 !important;
+  text-decoration: underline !important;
+}
+
+#cc-main a:hover {
+  color: #a0522d !important;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  #cc-main .cm {
+    margin: 1rem !important;
+    border-radius: 12px !important;
+  }
+
+  #cc-main .cm__title {
+    font-size: 1.3rem !important;
+  }
+
+  #cc-main .cm__btn {
+    padding: 10px 20px !important;
+    font-size: 0.85rem !important;
+  }
+}
