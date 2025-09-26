@@ -31,7 +31,7 @@ export default function ServiceNavigation() {
 
   // Get current service index
   const currentServiceIndex = services.findIndex((service) =>
-    pathname.includes(`/${service.slug}`),
+    pathname?.includes(`/${service.slug}`),
   );
 
   // If not found, don't render navigation

@@ -165,6 +165,9 @@ const HorizScroll: React.FC = () => {
         // Force refresh ScrollTrigger to work properly with Lenis
         ScrollTrigger.refresh();
 
+        // Additional null check for scrollerRef
+        if (!scrollerRef.current) return;
+
         const scrollWidth = scrollerRef.current.scrollWidth;
         const viewportWidth = window.innerWidth;
 
@@ -193,8 +196,10 @@ const HorizScroll: React.FC = () => {
         });
 
         // Store animation reference for manual cleanup if needed
-        (containerRef.current as any).horizontalScrollAnimation =
-          horizontalScrollAnimation;
+        if (containerRef.current) {
+          (containerRef.current as any).horizontalScrollAnimation =
+            horizontalScrollAnimation;
+        }
       };
 
       // Delay initialization to avoid conflicts with page transitions
