@@ -8,7 +8,7 @@ export interface MenuItem {
 
 export const navigationItems: MenuItem[] = [
   { route: "", labelKey: "nav.home" },
-  { route: "about", labelKey: "nav.about" }, // Will become /fr/about or /nl/over-ons
+  { route: "a-propos", labelKey: "nav.about" }, // Will become /fr/a-propos or /nl/over-ons
   { route: "services", labelKey: "nav.services" }, // Will become /fr/services or /nl/services
   { route: "contact", labelKey: "nav.contact" }, // Will become /fr/contact or /nl/contact
   { route: "blog", labelKey: "nav.blog" }, // Will become /fr/blog or /nl/blog
